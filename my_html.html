@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled HTML Page with JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background-color 0.5s ease;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+        main {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px 0;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        select, input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        form {
+            margin-top: 20px;
+        }
+        .colored-text {
+            transition: color 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Styled Page</h1>
+    </header>
+    <main>
+        <h2>About This Page</h2>
+        <p>This is a basic HTML page with CSS and JavaScript to style and add interactivity to buttons, dropdowns, and forms.</p>
+
+        <img src="https://images.unsplash.com/photo-1506748686214e9df14f5b4c7e9c5c7e20d3b5808c8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fGJvcmRlc3xlbnwwfHx8fDE2ODQ1Mzg0NjA&ixlib=rb-1.2.1&q=80&w=800" alt="Beautiful Landscape">
+
+        <h3>Buttons</h3>
+        <button onclick="handleClick('Click Me')">Click Me</button>
+        <button onclick="handleClick('Submit')">Submit</button>
+        <button onclick="changeBackgroundColor()">Change Background Color</button>
+        <button onclick="changeTextColor()">Change Text Color</button>
+
+        <h3>Dropdown Menu</h3>
+        <label for="options">Choose an option:</label>
+        <select id="options" name="options" onchange="handleDropdownChange(this)">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
+
+        <h3>Form</h3>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br><br>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea>
+            <br><br>
+            <button type="button" onclick="handleFormSubmit()">Send</button>
+        </form>
+
+        <p class="colored-text" id="colorParagraph">This paragraph's color will change when you click the button.</p>
+    </main>
+
+    <script>
+        function handleClick(buttonLabel) {
+            alert(`You clicked the ${buttonLabel} button.`);
+        }
+
+        function handleDropdownChange(selectElement) {
+            const selectedOption = selectElement.options[selectElement.selectedIndex].text;
+            alert(`You selected ${selectedOption}.`);
+        }
+
+        function handleFormSubmit() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                if (confirm('Are you sure you want to submit the form?')) {
+                    alert(`Form submitted!\nName: ${name}\nEmail: ${email}\nMessage: ${message}`);
+                    document.getElementById('contactForm').reset(); // Optional: Reset the form after submission
+                }
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+
+        function changeBackgroundColor() {
+            const colors = ['#f4f4f4', '#d1e7dd', '#f8d7da', '#fff3cd', '#d1ecf1'];
+            document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function changeTextColor() {
+            const colors = ['#000000', '#ff5733', '#33ff57', '#3357ff', '#f033ff'];
+            document.getElementById('colorParagraph').style.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+</body>
+</html>
